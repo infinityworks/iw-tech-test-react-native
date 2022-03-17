@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "test-watch": "jest --watch",
+    "lint": "eslint . --ext '.js,.jsx,.ts,.tsx'"
   },
   "dependencies": {
     "react": "17.0.2",
