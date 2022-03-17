@@ -8,6 +8,17 @@ import { LocalAuthority } from '../../../models';
 describe('getEstablishments()', () => {
   const url = 'https://api.ratings.food.gov.uk/Authorities';
 
+  const sampleLocalAuthorities: LocalAuthorityResource[] = [
+    {
+      LocalAuthorityId: 406,
+      Name: 'York',
+    },
+    {
+      LocalAuthorityId: 198,
+      Name: 'Aberdeenshire',
+    },
+  ];
+
   const server = setupServer();
 
   beforeAll(() => {
@@ -23,26 +34,15 @@ describe('getEstablishments()', () => {
   });
 
   it('retrieves Local Authorities and sorts by name', async () => {
-    const authorities: LocalAuthorityResource[] = [
-      {
-        LocalAuthorityId: 406,
-        Name: 'York',
-      },
-      {
-        LocalAuthorityId: 198,
-        Name: 'Aberdeenshire',
-      },
-    ];
-
     server.use(
       rest.get(url, (_request, _response, context) => {
-        return response(context.json({ authorities }));
+        return response(context.json({ authorities: sampleLocalAuthorities }));
       }),
     );
 
-    let actualAuthorities = await getLocalAuthorities();
+    let actual = await getLocalAuthorities();
 
-    let expectedAuthorities: LocalAuthority[] = [
+    let expected: LocalAuthority[] = [
       {
         id: 198,
         name: 'Aberdeenshire',
@@ -53,6 +53,6 @@ describe('getEstablishments()', () => {
       },
     ];
 
-    expect(actualAuthorities).toStrictEqual(expectedAuthorities);
+    expect(actual).toStrictEqual(expected);
   });
 });
