@@ -8,43 +8,59 @@
  * @format
  */
 
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import {
+  ActivityIndicator,
   SafeAreaView,
-  ScrollView,
   StatusBar,
   Text,
   useColorScheme,
-  View,
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { styles } from './App.styles';
+import { getLocalAuthorities } from './apis';
+import { LocalAuthority } from './models';
+import { LocalAuthorityList } from './components/local-authority-list';
 
 function App(): ReactElement {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const [localAuthorities, setLocalAuthorities] = useState<
+    readonly LocalAuthority[] | null
+  >();
+
+  const [errorMessage, setErrorMessage] = useState<String | null>();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  useEffect(() => {
+    async function fetchLocalAuthorities() {
+      try {
+        let authorities = await getLocalAuthorities();
+
+        setLocalAuthorities(authorities);
+      } catch (error) {
+        setErrorMessage((error as Error).message);
+      }
+    }
+
+    fetchLocalAuthorities();
+  }, []);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Text>
-            Hello <Text style={styles.highlight}>World.</Text>
-          </Text>
-        </View>
-      </ScrollView>
+      {!localAuthorities && <ActivityIndicator />}
+
+      {localAuthorities && (
+        <LocalAuthorityList localAuthorities={localAuthorities} />
+      )}
+
+      {errorMessage && <Text>{errorMessage}</Text>}
     </SafeAreaView>
   );
 }

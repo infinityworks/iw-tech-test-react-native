@@ -4,7 +4,7 @@ import { FlatList, ListRenderItem, Text } from 'react-native';
 import { LocalAuthority } from '../../models';
 
 type LocalAuthorityListProps = {
-  readonly localAuthorities: LocalAuthority[];
+  readonly localAuthorities: readonly LocalAuthority[];
 };
 
 function LocalAuthorityList({
