@@ -20,9 +20,9 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { getAuthorities } from './apis';
-import { Authority } from './models';
-import { AuthorityList } from './components';
+import { getAuthorities } from '../../apis';
+import { Authority } from '../../models';
+import { AuthorityList } from '../../components';
 
 function App(): ReactElement {
   const isDarkMode = useColorScheme() === 'dark';
