@@ -1,6 +1,6 @@
-type LocalAuthority = {
+type Authority = {
   readonly id: number;
   readonly name: string;
 };
 
-export type { LocalAuthority };
+export type { Authority };

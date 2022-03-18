@@ -20,16 +20,14 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { getLocalAuthorities } from './apis';
-import { LocalAuthority } from './models';
-import { LocalAuthorityList } from './components/local-authority-list';
+import { getAuthorities } from './apis';
+import { Authority } from './models';
+import { AuthorityList } from './components';
 
 function App(): ReactElement {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const [localAuthorities, setLocalAuthorities] = useState<
-    readonly LocalAuthority[] | null
-  >();
+  const [authorities, setAuthorities] = useState<readonly Authority[] | null>();
 
   const [errorMessage, setErrorMessage] = useState<String | null>();
 
@@ -38,27 +36,26 @@ function App(): ReactElement {
   };
 
   useEffect(() => {
-    async function fetchLocalAuthorities() {
+    async function getAuthoritiesAsync() {
       try {
-        let authorities = await getLocalAuthorities();
+        let newAuthorities = await getAuthorities();
 
-        setLocalAuthorities(authorities);
+        setAuthorities(newAuthorities);
       } catch (error) {
         setErrorMessage((error as Error).message);
       }
     }
 
-    fetchLocalAuthorities();
+    getAuthoritiesAsync();
   }, []);
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {!localAuthorities && <ActivityIndicator />}
 
-      {localAuthorities && (
-        <LocalAuthorityList localAuthorities={localAuthorities} />
-      )}
+      {!authorities && <ActivityIndicator />}
+
+      {authorities && <AuthorityList authorities={authorities} />}
 
       {errorMessage && <Text>{errorMessage}</Text>}
     </SafeAreaView>

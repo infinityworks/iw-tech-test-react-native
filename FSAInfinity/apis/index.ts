@@ -1,3 +1,3 @@
-import { getLocalAuthorities } from './fsa-api/getLocalAuthorities';
+import { getAuthorities } from './fsa-api/getAuthorities';
 
-export { getLocalAuthorities };
+export { getAuthorities };

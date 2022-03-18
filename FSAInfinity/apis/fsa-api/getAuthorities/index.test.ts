@@ -1,14 +1,14 @@
 import { setupServer } from 'msw/node';
 import { response, rest } from 'msw';
 
-import { getLocalAuthorities } from '.';
-import { LocalAuthorityResource } from '../resources';
-import { LocalAuthority } from '../../../models';
+import { getAuthorities } from '.';
+import { AuthorityResource } from '../resources';
+import { Authority } from '../../../models';
 
-describe('getEstablishments()', () => {
+describe('getAuthorities()', () => {
   const url = 'https://api.ratings.food.gov.uk/Authorities';
 
-  const sampleLocalAuthorities: LocalAuthorityResource[] = [
+  const sampleAuthorities: AuthorityResource[] = [
     {
       LocalAuthorityId: 406,
       Name: 'York',
@@ -33,16 +33,16 @@ describe('getEstablishments()', () => {
     server.close();
   });
 
-  it('retrieves Local Authorities and sorts by name', async () => {
+  it('retrieves Authorities and sorts by name', async () => {
     server.use(
       rest.get(url, (_request, _response, context) => {
-        return response(context.json({ authorities: sampleLocalAuthorities }));
+        return response(context.json({ authorities: sampleAuthorities }));
       }),
     );
 
-    let actual = await getLocalAuthorities();
+    let actual = await getAuthorities();
 
-    let expected: LocalAuthority[] = [
+    let expected: Authority[] = [
       {
         id: 198,
         name: 'Aberdeenshire',
