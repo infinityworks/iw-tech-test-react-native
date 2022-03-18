@@ -59,8 +59,5 @@ buck-out/
 # CocoaPods
 */ios/Pods/
 
-# Visual Studio Code
-.vscode/
-
 # Developer
 TODO.txt

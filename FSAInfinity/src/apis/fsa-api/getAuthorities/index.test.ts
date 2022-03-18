@@ -6,53 +6,53 @@ import { AuthorityResource } from '../resources';
 import { Authority } from '../../../models';
 
 describe('getAuthorities()', () => {
-  const url = 'https://api.ratings.food.gov.uk/Authorities';
+    const url = 'https://api.ratings.food.gov.uk/Authorities';
 
-  const sampleAuthorities: AuthorityResource[] = [
-    {
-      LocalAuthorityId: 406,
-      Name: 'York',
-    },
-    {
-      LocalAuthorityId: 198,
-      Name: 'Aberdeenshire',
-    },
-  ];
-
-  const server = setupServer();
-
-  beforeAll(() => {
-    server.listen();
-  });
-
-  afterEach(() => {
-    server.resetHandlers();
-  });
-
-  afterAll(() => {
-    server.close();
-  });
-
-  it('retrieves Authorities and sorts by name', async () => {
-    server.use(
-      rest.get(url, (_request, _response, context) => {
-        return response(context.json({ authorities: sampleAuthorities }));
-      }),
-    );
-
-    let actual = await getAuthorities();
-
-    let expected: Authority[] = [
-      {
-        id: 198,
-        name: 'Aberdeenshire',
-      },
-      {
-        id: 406,
-        name: 'York',
-      },
+    const sampleAuthorities: AuthorityResource[] = [
+        {
+            LocalAuthorityId: 406,
+            Name: 'York',
+        },
+        {
+            LocalAuthorityId: 198,
+            Name: 'Aberdeenshire',
+        },
     ];
 
-    expect(actual).toStrictEqual(expected);
-  });
+    const server = setupServer();
+
+    beforeAll(() => {
+        server.listen();
+    });
+
+    afterEach(() => {
+        server.resetHandlers();
+    });
+
+    afterAll(() => {
+        server.close();
+    });
+
+    it('retrieves Authorities and sorts by name', async () => {
+        server.use(
+            rest.get(url, (_request, _response, context) => {
+                return response(context.json({ authorities: sampleAuthorities }));
+            }),
+        );
+
+        let actual = await getAuthorities();
+
+        let expected: Authority[] = [
+            {
+                id: 198,
+                name: 'Aberdeenshire',
+            },
+            {
+                id: 406,
+                name: 'York',
+            },
+        ];
+
+        expect(actual).toStrictEqual(expected);
+    });
 });

@@ -11,6 +11,12 @@ $ git clone https://github.com/infinityworks/iw-tech-test-react-native.git
 ### Set up your development environment
 Follow the instructions [here](https://reactnative.dev/docs/environment-setup) to set up your development environment for either iOS or Android.
 
+### Install packages
+```
+$ cd /path/to/iw-tech-test-react-native/FSAInfinity
+$ npm install
+```
+
 ### Run Metro
 ```
 $ cd /path/to/iw-tech-test-react-native/FSAInfinity
