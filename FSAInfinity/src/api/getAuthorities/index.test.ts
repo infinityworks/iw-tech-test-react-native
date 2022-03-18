@@ -1,9 +1,10 @@
 import { setupServer } from 'msw/node';
 import { response, rest } from 'msw';
 
+import { AuthorityResource } from 'src/api/resources';
+import { Authority } from 'src/models';
+
 import { getAuthorities } from '.';
-import { AuthorityResource } from '../resources';
-import { Authority } from '../../../models';
 
 describe('getAuthorities()', () => {
     const url = 'https://api.ratings.food.gov.uk/Authorities';

@@ -1,5 +1,5 @@
-import { Authority } from '../../../models';
-import { AuthorityResource } from '../resources';
+import { Authority } from 'src/models';
+import { AuthorityResource } from 'src/api/resources';
 
 function toModel(response: Array<AuthorityResource>): Array<Authority> {
     const authorities = response.map((authority) => ({

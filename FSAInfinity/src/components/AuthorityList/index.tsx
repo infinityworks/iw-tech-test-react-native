@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { FlatList, ListRenderItem, Text } from 'react-native';
 
-import { Authority } from '../../models';
+import { Authority } from 'src/models';
 
 type AuthorityListProps = {
     readonly authorities: readonly Authority[];

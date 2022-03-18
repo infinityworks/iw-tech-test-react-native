@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
-import { Authority } from '../../models';
+import { Authority } from 'src/models';
 import { AuthorityList } from '.';
 
 describe('<AuthorityList />', () => {

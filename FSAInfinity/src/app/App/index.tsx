@@ -14,9 +14,9 @@ import { ActivityIndicator, SafeAreaView, StatusBar, Text, useColorScheme } from
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { getAuthorities } from '../../apis';
-import { Authority } from '../../models';
-import { AuthorityList } from '../../components';
+import { Authority } from 'src/models';
+import { AuthorityList } from 'src/components';
+import { getAuthorities } from 'src/api';
 
 function App(): ReactElement {
     const isDarkMode = useColorScheme() === 'dark';
