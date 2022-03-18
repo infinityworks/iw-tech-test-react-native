@@ -33,7 +33,7 @@ describe('getAuthorities()', () => {
         server.close();
     });
 
-    it('retrieves Authorities and sorts by name', async () => {
+    it('retrieves authorities and sorts by name', async () => {
         server.use(
             rest.get(url, (_request, _response, context) => {
                 return response(context.json({ authorities: sampleAuthorities }));
@@ -54,5 +54,15 @@ describe('getAuthorities()', () => {
         ];
 
         expect(actual).toStrictEqual(expected);
+    });
+
+    it('throws when fails to get authorities', async () => {
+        server.use(
+            rest.get(url, (_request, _response, context) => {
+                return response(context.status(500));
+            }),
+        );
+
+        await expect(getAuthorities()).rejects.toThrow('Failed to get authorities (500)');
     });
 });

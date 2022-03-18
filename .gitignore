@@ -59,5 +59,8 @@ buck-out/
 # CocoaPods
 */ios/Pods/
 
+# Jest
+coverage/
+
 # Developer
 TODO.txt
