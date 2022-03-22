@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import { Authority } from 'src/models';
 import { AuthorityList } from '.';
@@ -22,10 +22,22 @@ describe('<AuthorityList />', () => {
         expect(getByText('No authorities found.')).toBeTruthy();
     });
 
-    it('renders authority list', () => {
+    it.each(authorities)('renders authority list including "%s"', ({ name }) => {
         const { getByText } = render(<AuthorityList authorities={authorities} />);
 
-        expect(getByText('Aberdeenshire')).toBeTruthy();
-        expect(getByText('York')).toBeTruthy();
+        expect(getByText(name)).toBeTruthy();
+    });
+
+    it.each(authorities)('raises event when user selects authority "%s"', ({ name }) => {
+        const onSelectAuthority = jest.fn();
+        const expectedAuthority = authorities.find((authority) => authority.name === name);
+
+        const { getByText } = render(
+            <AuthorityList authorities={authorities} onSelectAuthority={onSelectAuthority} />,
+        );
+
+        fireEvent.press(getByText(name));
+
+        expect(onSelectAuthority).toHaveBeenCalledWith(expectedAuthority);
     });
 });

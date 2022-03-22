@@ -7,9 +7,9 @@
         "ios": "react-native run-ios",
         "start": "react-native start",
         "lint": "eslint . --ext '.js,.jsx,.ts,.tsx'",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "test:coverage": "jest test --coverage --watchAll"
+        "test": "jest --verbose",
+        "test:watch": "jest --verbose --watch",
+        "test:coverage": "jest --verbose --coverage --watchAll"
     },
     "dependencies": {
         "@react-navigation/native": "^6.0.8",
