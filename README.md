@@ -6,6 +6,7 @@
 
 ```
 $ git clone https://github.com/infinityworks/iw-tech-test-react-native.git
+$ cd /path/to/iw-tech-test-react-native # instructions assume you are in this folder
 ```
 
 ### Set up your development environment
@@ -21,27 +22,31 @@ For this to work, you must also install the [Microsoft ESLint extension](https:/
 ### Install packages
 
 ```
-$ cd /path/to/iw-tech-test-react-native
 $ npm install
+```
+
+### iOS only: Install CocoaPods
+
+```
+$ cd ios
+$ pod install # this may take a while
+$ cd ..
 ```
 
 ### Run Metro
 
 ```
-$ cd /path/to/iw-tech-test-react-native
 $ npx react-native start
 ```
 
 ### Run the app on an Android Emulator
 
 ```
-$ cd /path/to/iw-tech-test-react-native
 $ npx react-native run-android
 ```
 
 ### Run the app on an iOS Simulator
 
 ```
-$ cd /path/to/iw-tech-test-react-native
 $ npx react-native run-ios
 ```
