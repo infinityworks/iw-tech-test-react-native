@@ -5,7 +5,7 @@ import { Authority } from 'src/models';
 import { AuthorityList } from '.';
 
 describe('<AuthorityList />', () => {
-    let sampleAuthorities: Authority[] = [
+    let authorities: Authority[] = [
         {
             id: 198,
             name: 'Aberdeenshire',
@@ -22,10 +22,10 @@ describe('<AuthorityList />', () => {
         expect(getByText('No authorities found.')).toBeTruthy();
     });
 
-    it('renders Authority names', () => {
-        const { getByText } = render(<AuthorityList authorities={sampleAuthorities} />);
+    it('renders authority names', () => {
+        const { getByText } = render(<AuthorityList authorities={authorities} />);
 
-        expect(getByText('Aberdeenshire')).not.toBeUndefined();
-        expect(getByText('York')).not.toBeUndefined();
+        expect(getByText('Aberdeenshire')).toBeTruthy();
+        expect(getByText('York')).toBeTruthy();
     });
 });

@@ -9,7 +9,7 @@ import { getAuthorities } from '.';
 describe('getAuthorities()', () => {
     const url = 'https://api.ratings.food.gov.uk/Authorities';
 
-    const sampleAuthorities: AuthorityResource[] = [
+    const exampleAuthorities: readonly AuthorityResource[] = [
         {
             LocalAuthorityId: 406,
             Name: 'York',
@@ -22,28 +22,20 @@ describe('getAuthorities()', () => {
 
     const server = setupServer();
 
-    beforeAll(() => {
-        server.listen();
-    });
+    beforeAll(() => server.listen());
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
 
-    afterEach(() => {
-        server.resetHandlers();
-    });
-
-    afterAll(() => {
-        server.close();
-    });
-
-    it('retrieves authorities and sorts by name', async () => {
+    it('retrieves authorities sorted by name', async () => {
         server.use(
             rest.get(url, (_request, _response, context) => {
-                return response(context.json({ authorities: sampleAuthorities }));
+                return response(context.json({ authorities: exampleAuthorities }));
             }),
         );
 
-        let actual = await getAuthorities();
+        let actualAuthorities = await getAuthorities();
 
-        let expected: Authority[] = [
+        let expectedAuthorities: readonly Authority[] = [
             {
                 id: 198,
                 name: 'Aberdeenshire',
@@ -54,7 +46,7 @@ describe('getAuthorities()', () => {
             },
         ];
 
-        expect(actual).toStrictEqual(expected);
+        expect(actualAuthorities).toStrictEqual(expectedAuthorities);
     });
 
     it('throws when fails to get authorities', async () => {
