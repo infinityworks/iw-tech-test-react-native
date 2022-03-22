@@ -21,8 +21,7 @@ function AuthorityList({
         let { id, name } = authority;
 
         return (
-            <TouchableWithoutFeedback
-                onPress={() => onSelectAuthority && onSelectAuthority(authority)}>
+            <TouchableWithoutFeedback onPress={() => onSelectAuthority?.(authority)}>
                 <Text key={id}>{name}</Text>
             </TouchableWithoutFeedback>
         );

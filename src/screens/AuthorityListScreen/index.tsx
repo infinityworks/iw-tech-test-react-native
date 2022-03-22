@@ -17,7 +17,6 @@ function AuthorityListScreen(): ReactElement {
 
                 setAuthorities(newAuthorities);
             } catch (error) {
-                console.log((error as Error).message);
                 setErrorMessage((error as Error).message);
             }
         }

@@ -47,4 +47,18 @@ describe('<AuthorityListScreen />', () => {
         expect(queryByTestId('activity-indicator')).toBeTruthy();
         await waitFor(() => expect(queryByTestId('activity-indicator')).toBeFalsy());
     });
+
+    it('renders error message when fails to get authorities', async () => {
+        server.use(
+            rest.get(url, (_request, response, context) => {
+                return response(context.status(403));
+            }),
+        );
+
+        const { getByText } = render(<AuthorityListScreen />);
+
+        await waitFor(() => {
+            expect(getByText('Failed to get authorities (403)')).toBeTruthy();
+        });
+    });
 });
