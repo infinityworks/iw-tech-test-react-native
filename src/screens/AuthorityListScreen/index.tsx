@@ -10,8 +10,8 @@ import { Authority } from 'src/models';
 import { RootStackNavigation } from 'src/navigation';
 
 function AuthorityListScreen(): ReactElement {
-    const [authorities, setAuthorities] = useState<readonly Authority[] | null>();
-    const [errorMessage, setErrorMessage] = useState<String | null>();
+    const [authorities, setAuthorities] = useState<readonly Authority[]>();
+    const [errorMessage, setErrorMessage] = useState<String>();
 
     const navigation = useNavigation<RootStackNavigation>();
 
