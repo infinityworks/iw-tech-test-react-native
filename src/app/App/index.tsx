@@ -5,16 +5,18 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AuthorityListScreen } from 'src/screens/AuthorityListScreen';
+import { AuthorityDetailScreen, AuthorityListScreen } from 'src/screens';
+import { RootStackParamList } from 'src/navigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): ReactElement {
     return (
         <NavigationContainer>
             <StatusBar />
             <Stack.Navigator>
-                <Stack.Screen name="Authorities" component={AuthorityListScreen} />
+                <Stack.Screen name="AuthorityList" component={AuthorityListScreen} />
+                <Stack.Screen name="AuthorityDetail" component={AuthorityDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

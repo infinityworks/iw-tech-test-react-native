@@ -1,3 +1,4 @@
+import { AuthorityDetailScreen } from './AuthorityDetailScreen';
 import { AuthorityListScreen } from './AuthorityListScreen';
 
-export { AuthorityListScreen };
+export { AuthorityListScreen, AuthorityDetailScreen };

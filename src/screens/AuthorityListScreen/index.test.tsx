@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, waitFor } from '@testing-library/react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
@@ -34,7 +35,11 @@ describe('<AuthorityListScreen />', () => {
     afterAll(() => server.close());
 
     it('renders authority list', async () => {
-        const { getByText } = render(<AuthorityListScreen />);
+        const { getByText } = render(
+            <NavigationContainer>
+                <AuthorityListScreen />
+            </NavigationContainer>,
+        );
 
         await waitFor(() => {
             expect(getByText('Manchester')).toBeTruthy();
@@ -42,7 +47,11 @@ describe('<AuthorityListScreen />', () => {
     });
 
     it('renders activity indicator (spinner) initially and then removes it', async () => {
-        const { queryByTestId } = render(<AuthorityListScreen />);
+        const { queryByTestId } = render(
+            <NavigationContainer>
+                <AuthorityListScreen />
+            </NavigationContainer>,
+        );
 
         expect(queryByTestId('activity-indicator')).toBeTruthy();
         await waitFor(() => expect(queryByTestId('activity-indicator')).toBeFalsy());
@@ -55,7 +64,11 @@ describe('<AuthorityListScreen />', () => {
             }),
         );
 
-        const { getByText } = render(<AuthorityListScreen />);
+        const { getByText } = render(
+            <NavigationContainer>
+                <AuthorityListScreen />
+            </NavigationContainer>,
+        );
 
         await waitFor(() => {
             expect(getByText('Failed to get authorities (403)')).toBeTruthy();
