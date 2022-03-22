@@ -7,13 +7,13 @@ import { ActivityIndicator, Text, View } from 'react-native';
 import { getAuthorities } from 'src/api';
 import { AuthorityList } from 'src/components';
 import { Authority } from 'src/models';
-import { RootStackNavigationProp } from 'src/navigation';
+import { RootStackNavigation } from 'src/navigation';
 
 function AuthorityListScreen(): ReactElement {
     const [authorities, setAuthorities] = useState<readonly Authority[] | null>();
     const [errorMessage, setErrorMessage] = useState<String | null>();
 
-    const navigation = useNavigation<RootStackNavigationProp>();
+    const navigation = useNavigation<RootStackNavigation>();
 
     useEffect(() => {
         async function getAuthoritiesAsync() {

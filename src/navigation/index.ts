@@ -12,13 +12,13 @@ type RootStackParamList = {
     readonly AuthorityDetail: AuthorityDetailParams;
 };
 
-type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+type RootStackNavigation = NativeStackNavigationProp<RootStackParamList>;
 
-type AuthorityDetailRouteProp = RouteProp<RootStackParamList, 'AuthorityDetail'>;
+type AuthorityDetailRoute = RouteProp<RootStackParamList, 'AuthorityDetail'>;
 
 export type {
     AuthorityDetailParams,
-    AuthorityDetailRouteProp,
+    AuthorityDetailRoute,
     RootStackParamList,
-    RootStackNavigationProp,
+    RootStackNavigation,
 };

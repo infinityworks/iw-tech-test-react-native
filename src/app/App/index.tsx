@@ -15,7 +15,11 @@ function App(): ReactElement {
         <NavigationContainer>
             <StatusBar />
             <Stack.Navigator>
-                <Stack.Screen name="AuthorityList" component={AuthorityListScreen} />
+                <Stack.Screen
+                    name="AuthorityList"
+                    component={AuthorityListScreen}
+                    options={{ title: 'Authorities' }}
+                />
                 <Stack.Screen name="AuthorityDetail" component={AuthorityDetailScreen} />
             </Stack.Navigator>
         </NavigationContainer>
