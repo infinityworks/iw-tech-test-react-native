@@ -22,7 +22,7 @@ describe('<AuthorityList />', () => {
         expect(getByText('No authorities found.')).toBeTruthy();
     });
 
-    it('renders authority names', () => {
+    it('renders authority list', () => {
         const { getByText } = render(<AuthorityList authorities={authorities} />);
 
         expect(getByText('Aberdeenshire')).toBeTruthy();

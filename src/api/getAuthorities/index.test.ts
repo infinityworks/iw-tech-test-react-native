@@ -1,5 +1,5 @@
 import { setupServer } from 'msw/node';
-import { response, rest } from 'msw';
+import { rest } from 'msw';
 
 import { AuthorityResource } from 'src/api/resources';
 import { Authority } from 'src/models';
@@ -28,7 +28,7 @@ describe('getAuthorities()', () => {
 
     it('retrieves authorities sorted by name', async () => {
         server.use(
-            rest.get(url, (_request, _response, context) => {
+            rest.get(url, (_req, response, context) => {
                 return response(context.json({ authorities: exampleAuthorities }));
             }),
         );
@@ -51,7 +51,7 @@ describe('getAuthorities()', () => {
 
     it('throws when fails to get authorities', async () => {
         server.use(
-            rest.get(url, (_request, _response, context) => {
+            rest.get(url, (_request, response, context) => {
                 return response(context.status(500));
             }),
         );

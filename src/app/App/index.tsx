@@ -1,48 +1,22 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 
-import { ActivityIndicator, SafeAreaView, StatusBar, Text, useColorScheme } from 'react-native';
+import { StatusBar } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Authority } from 'src/models';
-import { AuthorityList } from 'src/components';
-import { getAuthorities } from 'src/api';
+import { AuthorityListScreen } from 'src/screens/AuthorityListScreen';
+
+const Stack = createNativeStackNavigator();
 
 function App(): ReactElement {
-    const isDarkMode = useColorScheme() === 'dark';
-
-    const [authorities, setAuthorities] = useState<readonly Authority[] | null>();
-
-    const [errorMessage, setErrorMessage] = useState<String | null>();
-
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
-    useEffect(() => {
-        async function getAuthoritiesAsync() {
-            try {
-                let newAuthorities = await getAuthorities();
-
-                setAuthorities(newAuthorities);
-            } catch (error) {
-                setErrorMessage((error as Error).message);
-            }
-        }
-
-        getAuthoritiesAsync();
-    }, []);
-
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-
-            {!authorities && <ActivityIndicator />}
-
-            {authorities && <AuthorityList authorities={authorities} />}
-
-            {errorMessage && <Text>{errorMessage}</Text>}
-        </SafeAreaView>
+        <NavigationContainer>
+            <StatusBar />
+            <Stack.Navigator>
+                <Stack.Screen name="Authorities" component={AuthorityListScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 

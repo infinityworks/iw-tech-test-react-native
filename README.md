@@ -28,9 +28,7 @@ $ npm install
 ### iOS only: Install CocoaPods
 
 ```
-$ cd ios
-$ pod install # this may take a while
-$ cd ..
+$ npx pod-install ios # this may take a while
 ```
 
 ### Run Metro
