@@ -1,7 +1,7 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useLayoutEffect } from 'react';
 
 import { Text } from 'react-native';
-import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { AuthorityDetailRoute, RootStackNavigation } from 'src/navigation';
 
@@ -11,7 +11,7 @@ function AuthorityDetailScreen(): ReactElement {
 
     const { name } = route.params.authority;
 
-    useFocusEffect(() => {
+    useLayoutEffect(() => {
         navigation.setOptions({ title: name });
     });
 
