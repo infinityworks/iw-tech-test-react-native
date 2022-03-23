@@ -3,12 +3,10 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { setupServer } from 'msw/node';
-import { rest } from 'msw';
-
-import { AuthorityResource } from 'src/api/resources';
 import { AuthorityListScreen } from '.';
 import { Authority } from 'src/models';
+
+import { getAuthorities } from 'src/api';
 
 const mockNavigate = jest.fn();
 
@@ -23,19 +21,10 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
-describe('<AuthorityListScreen />', () => {
-    const url = 'https://api.ratings.food.gov.uk/Authorities';
+jest.mock('src/api');
 
-    const authorityResources: readonly AuthorityResource[] = [
-        {
-            LocalAuthorityId: 413,
-            Name: 'Leeds',
-        },
-        {
-            LocalAuthorityId: 415,
-            Name: 'Manchester',
-        },
-    ];
+describe('<AuthorityListScreen />', () => {
+    const mockGetAuthorities = getAuthorities as jest.Mock;
 
     const authorities: readonly Authority[] = [
         {
@@ -48,22 +37,11 @@ describe('<AuthorityListScreen />', () => {
         },
     ];
 
-    const server = setupServer();
-
-    beforeAll(() => server.listen());
-
     beforeEach(() => {
-        server.use(
-            rest.get(url, (_request, response, context) => {
-                return response(context.json({ authorities: authorityResources }));
-            }),
-        );
+        mockGetAuthorities.mockResolvedValue(authorities);
     });
 
-    afterEach(() => server.resetHandlers());
-    afterAll(() => server.close());
-
-    it('renders authority list', async () => {
+    it.each(authorities)('renders authority list', async ({ name }) => {
         const { getByText } = render(
             <NavigationContainer>
                 <AuthorityListScreen />
@@ -71,7 +49,7 @@ describe('<AuthorityListScreen />', () => {
         );
 
         await waitFor(() => {
-            expect(getByText('Manchester')).toBeTruthy();
+            expect(getByText(name)).toBeTruthy();
         });
     });
 
@@ -87,11 +65,9 @@ describe('<AuthorityListScreen />', () => {
     });
 
     it('renders error message when fails to get authorities', async () => {
-        server.use(
-            rest.get(url, (_request, response, context) => {
-                return response(context.status(403));
-            }),
-        );
+        const errorMessage = 'Failed to get authorities';
+
+        mockGetAuthorities.mockRejectedValue(new Error(errorMessage));
 
         const { getByText } = render(
             <NavigationContainer>
@@ -100,7 +76,7 @@ describe('<AuthorityListScreen />', () => {
         );
 
         await waitFor(() => {
-            expect(getByText('Failed to get authorities (403)')).toBeTruthy();
+            expect(getByText(errorMessage)).toBeTruthy();
         });
     });
 
