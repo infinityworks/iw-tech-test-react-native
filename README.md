@@ -1,4 +1,4 @@
-# iw-tech-test-react-native
+# Infinity Works - React Native Tech Test
 
 ## Getting started
 
@@ -15,7 +15,7 @@ Follow the instructions [here](https://reactnative.dev/docs/environment-setup) t
 
 ### Visual Studio Code
 
-We recommend [Visual Studio Code](https://code.visualstudio.com/). There are workspace settings in `.vscode/settings.json` that will automatically format the code and fix any linting issues on save.
+We recommend [Visual Studio Code](https://code.visualstudio.com/). There are workspace settings in [`.vscode/settings.json`](.vscode/settings.json) that will automatically format the code and fix any linting issues on save.
 
 For this to work, you must also install the [Microsoft ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
@@ -48,3 +48,13 @@ $ npx react-native run-android
 ```
 $ npx react-native run-ios
 ```
+
+## Submission
+
+* Do __NOT__ fork this repository
+* Do __NOT__ commit your code to a public GitHub repo
+
+## Screenshots
+
+![Authority List Screen](screenshots/authority-list-screen.png)
+![Authority Detail Screen](screenshots/authority-detail-screen.png)
