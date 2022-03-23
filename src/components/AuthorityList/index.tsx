@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
 
-import { FlatList, ListRenderItem, Text, TouchableWithoutFeedback } from 'react-native';
+import { FlatList, ListRenderItem, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import { Authority } from 'src/models';
+
+import { styles } from './index.styles';
 
 type AuthorityListProps = {
     readonly authorities: readonly Authority[];
@@ -22,7 +24,11 @@ function AuthorityList({
 
         return (
             <TouchableWithoutFeedback onPress={() => onSelectAuthority?.(authority)}>
-                <Text key={id}>{name}</Text>
+                <View style={styles.item}>
+                    <Text style={styles.itemText} key={id}>
+                        {name}
+                    </Text>
+                </View>
             </TouchableWithoutFeedback>
         );
     };

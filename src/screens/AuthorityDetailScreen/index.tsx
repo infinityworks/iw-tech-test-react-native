@@ -39,9 +39,11 @@ function AuthorityDetailScreen(): ReactElement {
         const { label, value } = rating;
 
         return (
-            <Text>
-                {label} - {value}
-            </Text>
+            <View>
+                <Text>
+                    {label} - {value}
+                </Text>
+            </View>
         );
     };
 
