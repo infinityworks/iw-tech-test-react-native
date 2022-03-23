@@ -28,7 +28,7 @@ describe('<AuthorityList />', () => {
         expect(getByText(name)).toBeTruthy();
     });
 
-    it.each(authorities)('raises event when user selects authority "%s"', ({ name }) => {
+    it.each(authorities)('raises event when user selects authority "%j"', ({ name }) => {
         const onSelectAuthority = jest.fn();
         const expectedAuthority = authorities.find((authority) => authority.name === name);
 

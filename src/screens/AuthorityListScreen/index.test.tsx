@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, waitFor } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import { setupServer } from 'msw/node';
@@ -8,14 +8,43 @@ import { rest } from 'msw';
 
 import { AuthorityResource } from 'src/api/resources';
 import { AuthorityListScreen } from '.';
+import { Authority } from 'src/models';
+
+const mockNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+    const actual = jest.requireActual('@react-navigation/native');
+
+    return {
+        ...actual,
+        useNavigation: () => ({
+            navigate: mockNavigate,
+        }),
+    };
+});
 
 describe('<AuthorityListScreen />', () => {
     const url = 'https://api.ratings.food.gov.uk/Authorities';
 
-    const authorities: readonly AuthorityResource[] = [
+    const authorityResources: readonly AuthorityResource[] = [
+        {
+            LocalAuthorityId: 413,
+            Name: 'Leeds',
+        },
         {
             LocalAuthorityId: 415,
             Name: 'Manchester',
+        },
+    ];
+
+    const authorities: readonly Authority[] = [
+        {
+            id: 413,
+            name: 'Leeds',
+        },
+        {
+            id: 415,
+            name: 'Manchester',
         },
     ];
 
@@ -26,7 +55,7 @@ describe('<AuthorityListScreen />', () => {
     beforeEach(() => {
         server.use(
             rest.get(url, (_request, response, context) => {
-                return response(context.json({ authorities }));
+                return response(context.json({ authorities: authorityResources }));
             }),
         );
     });
@@ -74,4 +103,25 @@ describe('<AuthorityListScreen />', () => {
             expect(getByText('Failed to get authorities (403)')).toBeTruthy();
         });
     });
+
+    it.each(authorities)(
+        'navigates to detail screen when user selects authority "%j"',
+        async (authority) => {
+            const { getByText } = render(
+                <NavigationContainer>
+                    <AuthorityListScreen />
+                </NavigationContainer>,
+            );
+
+            const { name } = authority;
+
+            await waitFor(() => {
+                expect(getByText(name)).toBeTruthy();
+            });
+
+            fireEvent.press(getByText(name));
+
+            expect(mockNavigate).toHaveBeenCalledWith('AuthorityDetail', { authority });
+        },
+    );
 });
