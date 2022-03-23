@@ -1,41 +1,38 @@
 import React from 'react';
 
 import { render } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Authority } from 'src/models';
 import { AuthorityDetailScreen } from '.';
 
-const mockSetOptions = jest.fn();
+jest.mock('@react-navigation/native');
 
-const authority: Authority = {
-    id: 879,
-    name: 'Rutland',
-};
+describe('<AuthorityDetailScreen />', () => {
+    const authority: Authority = {
+        id: 879,
+        name: 'Rutland',
+    };
 
-jest.mock('@react-navigation/native', () => {
-    const actual = jest.requireActual('@react-navigation/native');
+    const mockUseNavigation = useNavigation as jest.Mock;
+    const mockUseRoute = useRoute as jest.Mock;
 
-    return {
-        ...actual,
-        useNavigation: () => ({
+    const mockSetOptions = jest.fn();
+
+    beforeEach(() => {
+        mockUseNavigation.mockReturnValue({
             setOptions: mockSetOptions,
-        }),
-        useRoute: () => ({
+        });
+
+        mockUseRoute.mockReturnValue({
             params: {
                 authority,
             },
-        }),
-    };
-});
+        });
+    });
 
-describe('<AuthorityDetailScreen />', () => {
-    it('sets authority name as navigation title', () => {
-        render(
-            <NavigationContainer>
-                <AuthorityDetailScreen />
-            </NavigationContainer>,
-        );
+    it('sets navigation title to authority name', () => {
+        render(<AuthorityDetailScreen />);
 
         expect(mockSetOptions).toBeCalledWith({
             title: authority.name,

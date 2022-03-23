@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
 
 import { AuthorityListScreen } from '.';
 import { Authority } from 'src/models';
@@ -42,11 +41,7 @@ describe('<AuthorityListScreen />', () => {
     });
 
     it.each(authorities)('renders authority list', async ({ name }) => {
-        const { getByText } = render(
-            <NavigationContainer>
-                <AuthorityListScreen />
-            </NavigationContainer>,
-        );
+        const { getByText } = render(<AuthorityListScreen />);
 
         await waitFor(() => {
             expect(getByText(name)).toBeTruthy();
@@ -54,11 +49,7 @@ describe('<AuthorityListScreen />', () => {
     });
 
     it('renders activity indicator (spinner) initially and then removes it', async () => {
-        const { queryByTestId } = render(
-            <NavigationContainer>
-                <AuthorityListScreen />
-            </NavigationContainer>,
-        );
+        const { queryByTestId } = render(<AuthorityListScreen />);
 
         expect(queryByTestId('activity-indicator')).toBeTruthy();
         await waitFor(() => expect(queryByTestId('activity-indicator')).toBeFalsy());
@@ -69,11 +60,7 @@ describe('<AuthorityListScreen />', () => {
 
         mockGetAuthorities.mockRejectedValue(new Error(errorMessage));
 
-        const { getByText } = render(
-            <NavigationContainer>
-                <AuthorityListScreen />
-            </NavigationContainer>,
-        );
+        const { getByText } = render(<AuthorityListScreen />);
 
         await waitFor(() => {
             expect(getByText(errorMessage)).toBeTruthy();
@@ -83,11 +70,7 @@ describe('<AuthorityListScreen />', () => {
     it.each(authorities)(
         'navigates to detail screen when user selects authority "%j"',
         async (authority) => {
-            const { getByText } = render(
-                <NavigationContainer>
-                    <AuthorityListScreen />
-                </NavigationContainer>,
-            );
+            const { getByText } = render(<AuthorityListScreen />);
 
             const { name } = authority;
 
