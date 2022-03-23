@@ -9,15 +9,15 @@ import { AuthorityDetailScreen } from '.';
 jest.mock('@react-navigation/native');
 
 describe('<AuthorityDetailScreen />', () => {
-    const authority: Authority = {
-        id: 879,
-        name: 'Rutland',
-    };
-
     const mockUseNavigation = useNavigation as jest.Mock;
     const mockUseRoute = useRoute as jest.Mock;
 
     const mockSetOptions = jest.fn();
+
+    const authority: Authority = {
+        id: 879,
+        name: 'Rutland',
+    };
 
     beforeEach(() => {
         mockUseNavigation.mockReturnValue({

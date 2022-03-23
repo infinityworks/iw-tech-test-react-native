@@ -4,13 +4,9 @@ import { FlatList, ListRenderItem, Text, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { AuthorityDetailRoute, RootStackNavigation } from 'src/navigation';
+import { Rating } from 'src/models';
 
 import { styles } from './index.styles';
-
-type Rating = {
-    readonly label: String;
-    readonly value: String;
-};
 
 function getRatings(): Rating[] {
     return [

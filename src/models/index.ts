@@ -3,4 +3,9 @@ type Authority = {
     readonly name: string;
 };
 
-export type { Authority };
+type Rating = {
+    readonly label: String;
+    readonly value: String;
+};
+
+export type { Authority, Rating };
