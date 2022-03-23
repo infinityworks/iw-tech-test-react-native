@@ -49,6 +49,29 @@ $ npx react-native run-android
 $ npx react-native run-ios
 ```
 
+## Testing
+
+### Overview
+
+Our tests are written in TypeScript using the [Jest Testing Framework](https://jestjs.io/). Test files are adjacent to the code they test (look for `index.test.ts*`).
+
+We use [Jest Mocks](https://jestjs.io/docs/manual-mocks) to mock dependencies where necessary.
+
+We use [Mock Service Worker](https://mswjs.io/) to mock API calls where necessary.
+
+There are __no__ API integration tests nor end to end UI tests.
+
+### Running tests
+
+There are a number of test scripts defined in [package.json](package.json):
+
+```
+$ npm run test              # runs all tests once
+$ npm run test:watch        # runs tests for changed (uncommited) code
+$ npm run test:coverage     # runs all tests and produces a test coverage report
+
+```
+
 ## Submission
 
 * Do __NOT__ fork this repository
