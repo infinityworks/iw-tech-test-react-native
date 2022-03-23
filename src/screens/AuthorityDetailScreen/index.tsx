@@ -5,6 +5,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { AuthorityDetailRoute, RootStackNavigation } from 'src/navigation';
 
+import { styles } from './index.styles';
+
 type Rating = {
     readonly label: String;
     readonly value: String;
@@ -39,17 +41,20 @@ function AuthorityDetailScreen(): ReactElement {
         const { label, value } = rating;
 
         return (
-            <View>
-                <Text>
-                    {label} - {value}
-                </Text>
+            <View style={styles.rating}>
+                <Text style={styles.ratingText}>{label}</Text>
+                <Text style={styles.ratingText}>{value}</Text>
             </View>
         );
     };
 
     return (
         <View>
-            <Text>{title}</Text>
+            <Text style={styles.title}>{title}</Text>
+            <View style={styles.rating}>
+                <Text style={styles.ratingTextHeader}>Rating</Text>
+                <Text style={styles.ratingTextHeader}>Percentage</Text>
+            </View>
             <FlatList data={ratings} renderItem={renderItem} />
         </View>
     );
