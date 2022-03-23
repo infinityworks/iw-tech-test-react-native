@@ -7,21 +7,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    rating: {
+    ratingItem: {
         padding: 8,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
     },
     ratingText: {
-        paddingLeft: 64,
-        paddingRight: 64,
+        width: '50%',
         fontSize: 21,
+        textAlign: 'center',
     },
-    ratingTextHeader: {
-        paddingLeft: 64,
-        paddingRight: 64,
-        fontSize: 21,
+    ratingHeader: {
         fontWeight: 'bold',
     },
 });

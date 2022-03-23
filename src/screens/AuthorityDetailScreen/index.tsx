@@ -41,7 +41,7 @@ function AuthorityDetailScreen(): ReactElement {
         const { label, value } = rating;
 
         return (
-            <View style={styles.rating}>
+            <View style={styles.ratingItem}>
                 <Text style={styles.ratingText}>{label}</Text>
                 <Text style={styles.ratingText}>{value}</Text>
             </View>
@@ -51,9 +51,9 @@ function AuthorityDetailScreen(): ReactElement {
     return (
         <View>
             <Text style={styles.title}>{title}</Text>
-            <View style={styles.rating}>
-                <Text style={styles.ratingTextHeader}>Rating</Text>
-                <Text style={styles.ratingTextHeader}>Percentage</Text>
+            <View style={styles.ratingItem}>
+                <Text style={[styles.ratingHeader, styles.ratingText]}>Rating</Text>
+                <Text style={[styles.ratingHeader, styles.ratingText]}>Percentage</Text>
             </View>
             <FlatList data={ratings} renderItem={renderItem} />
         </View>
