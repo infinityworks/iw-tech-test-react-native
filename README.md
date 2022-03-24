@@ -69,7 +69,6 @@ There are a number of test scripts defined in [package.json](package.json):
 $ npm run test              # runs all tests once
 $ npm run test:watch        # runs tests for changed (uncommited) code
 $ npm run test:coverage     # runs all tests and produces a test coverage report
-
 ```
 
 ## Submission
