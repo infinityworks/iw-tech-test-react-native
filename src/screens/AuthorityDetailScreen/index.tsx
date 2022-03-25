@@ -51,6 +51,7 @@ function AuthorityDetailScreen(): ReactElement {
                 <Text style={[styles.ratingHeader, styles.ratingText]}>Rating</Text>
                 <Text style={[styles.ratingHeader, styles.ratingText]}>Percentage</Text>
             </View>
+
             <FlatList data={ratings} renderItem={renderItem} />
         </View>
     );
