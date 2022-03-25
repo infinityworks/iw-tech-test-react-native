@@ -11,7 +11,7 @@ import { RootStackNavigation } from 'src/navigation';
 
 function AuthorityListScreen(): ReactElement {
     const [authorities, setAuthorities] = useState<readonly Authority[]>();
-    const [errorMessage, setErrorMessage] = useState<String>();
+    const [errorMessage, setErrorMessage] = useState<string>();
 
     const navigation = useNavigation<RootStackNavigation>();
 
