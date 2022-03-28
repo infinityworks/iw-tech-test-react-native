@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
 
 import { getAuthorities } from 'src/api';
 import { AuthorityList } from 'src/components';
