@@ -31,15 +31,15 @@ function AuthorityListScreen(): ReactElement {
         navigation.navigate('AuthorityDetail', { authority });
     };
 
-    return (
-        <View>
-            {!authorities && <ActivityIndicator testID="activity-indicator" />}
-            {authorities && (
-                <AuthorityList authorities={authorities} onSelectAuthority={onSelectAuthority} />
-            )}
-            {errorMessage && <Text>{errorMessage}</Text>}
-        </View>
-    );
+    if (errorMessage) {
+        return <Text>{errorMessage}</Text>;
+    }
+
+    if (!authorities) {
+        return <ActivityIndicator testID="activity-indicator" />;
+    }
+
+    return <AuthorityList authorities={authorities} onSelectAuthority={onSelectAuthority} />;
 }
 
 export { AuthorityListScreen };
