@@ -8,7 +8,7 @@ import { styles } from './index.styles';
 
 type AuthorityListProps = {
     readonly authorities: readonly Authority[];
-    onSelectAuthority?(authority: Authority): void;
+    readonly onSelectAuthority?: (authority: Authority) => void;
 };
 
 function AuthorityList({
