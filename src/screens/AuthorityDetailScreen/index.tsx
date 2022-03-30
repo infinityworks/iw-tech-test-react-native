@@ -48,8 +48,8 @@ function AuthorityDetailScreen(): ReactElement {
         <View>
             <Text style={styles.title}>{title}</Text>
             <View style={styles.ratingItem}>
-                <Text style={[styles.ratingHeader, styles.ratingText]}>Rating</Text>
-                <Text style={[styles.ratingHeader, styles.ratingText]}>Percentage</Text>
+                <Text style={[styles.ratingText, styles.ratingHeader]}>Rating</Text>
+                <Text style={[styles.ratingText, styles.ratingHeader]}>Percentage</Text>
             </View>
 
             <FlatList data={ratings} renderItem={renderItem} />
