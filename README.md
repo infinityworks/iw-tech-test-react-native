@@ -34,19 +34,19 @@ $ npx pod-install ios # this may take a while
 ### Run Metro
 
 ```
-$ npx react-native start
+$ npm run start
 ```
 
 ### Run the app on an Android Emulator
 
 ```
-$ npx react-native run-android
+$ npm run android
 ```
 
 ### Run the app on an iOS Simulator
 
 ```
-$ npx react-native run-ios
+$ npx run ios
 ```
 
 ## Testing
