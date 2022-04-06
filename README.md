@@ -46,7 +46,7 @@ $ npm run android
 ### Run the app on an iOS Simulator
 
 ```
-$ npx run ios
+$ npm run ios
 ```
 
 ## Testing
