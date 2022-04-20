@@ -2,7 +2,7 @@ import React from 'react';
 
 import { fireEvent, render, waitFor } from '@testing-library/react-native';
 
-import { AuthorityListScreen } from '.';
+import AuthorityListScreen from '.';
 import { Authority } from 'src/models';
 
 import { getAuthorities } from 'src/api';

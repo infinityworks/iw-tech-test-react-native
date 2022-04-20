@@ -10,20 +10,18 @@ import { RootStackParamList } from 'src/navigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function App(): ReactElement {
-    return (
-        <NavigationContainer>
-            <StatusBar />
-            <Stack.Navigator>
-                <Stack.Screen
-                    name="AuthorityList"
-                    component={AuthorityListScreen}
-                    options={{ title: 'Authorities' }}
-                />
-                <Stack.Screen name="AuthorityDetail" component={AuthorityDetailScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
-}
+const App = (): ReactElement => (
+    <NavigationContainer>
+        <StatusBar />
+        <Stack.Navigator>
+            <Stack.Screen
+                name="AuthorityList"
+                component={AuthorityListScreen}
+                options={{ title: 'Authorities' }}
+            />
+            <Stack.Screen name="AuthorityDetail" component={AuthorityDetailScreen} />
+        </Stack.Navigator>
+    </NavigationContainer>
+);
 
 export default App;

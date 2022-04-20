@@ -1,11 +1,9 @@
-type Authority = {
+export type Authority = {
     readonly id: number;
     readonly name: string;
 };
 
-type Rating = {
+export type Rating = {
     readonly label: string;
     readonly value: string;
 };
-
-export type { Authority, Rating };

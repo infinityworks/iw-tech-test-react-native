@@ -4,7 +4,7 @@ import { render } from '@testing-library/react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Authority } from 'src/models';
-import { AuthorityDetailScreen } from '.';
+import AuthorityDetailScreen from '.';
 
 jest.mock('@react-navigation/native');
 

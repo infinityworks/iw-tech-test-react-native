@@ -4,22 +4,22 @@ import { FlatList, ListRenderItem, Text, TouchableWithoutFeedback, View } from '
 
 import { Authority } from 'src/models';
 
-import { styles } from './index.styles';
+import styles from './index.styles';
 
 type AuthorityListProps = {
     readonly authorities: readonly Authority[];
     readonly onSelectAuthority?: (authority: Authority) => void;
 };
 
-function AuthorityList({
+const AuthorityList = ({
     authorities,
     onSelectAuthority = undefined,
-}: AuthorityListProps): ReactElement {
+}: AuthorityListProps): ReactElement => {
     if (authorities.length === 0) {
         return <Text>No authorities found.</Text>;
     }
 
-    let renderItem: ListRenderItem<Authority> = ({ item: authority }) => {
+    const renderItem: ListRenderItem<Authority> = ({ item: authority }) => {
         let { id, name } = authority;
 
         return (
@@ -34,6 +34,6 @@ function AuthorityList({
     };
 
     return <FlatList data={authorities} renderItem={renderItem} />;
-}
+};
 
-export { AuthorityList };
+export default AuthorityList;

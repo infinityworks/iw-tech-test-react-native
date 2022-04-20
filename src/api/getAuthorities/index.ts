@@ -1,16 +1,16 @@
 import { Authority } from 'src/models';
 import { AuthorityResource } from 'src/api/resources';
 
-function toModel(response: Array<AuthorityResource>): Array<Authority> {
+const toModel = (response: Array<AuthorityResource>): Array<Authority> => {
     const authorities = response.map((authority) => ({
         id: authority.LocalAuthorityId,
         name: authority.Name,
     }));
 
     return authorities.sort(({ name: a }, { name: b }) => a.localeCompare(b));
-}
+};
 
-async function getAuthorities(): Promise<readonly Authority[]> {
+const getAuthorities = async (): Promise<readonly Authority[]> => {
     const baseUrl = 'https://api.ratings.food.gov.uk';
     const url = `${baseUrl}/Authorities`;
 
@@ -32,6 +32,6 @@ async function getAuthorities(): Promise<readonly Authority[]> {
     const { authorities } = response;
 
     return toModel(authorities);
-}
+};
 
 export { getAuthorities };

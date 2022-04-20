@@ -1,4 +1,4 @@
 /* istanbul ignore file */
-import { AuthorityList } from './AuthorityList';
+import AuthorityList from './AuthorityList';
 
 export { AuthorityList };

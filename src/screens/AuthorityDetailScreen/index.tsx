@@ -6,9 +6,9 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { AuthorityDetailRoute, RootStackNavigation } from 'src/navigation';
 import { Rating } from 'src/models';
 
-import { styles } from './index.styles';
+import styles from './index.styles';
 
-function getRatings(): Rating[] {
+const getRatings = (): Rating[] => {
     return [
         { label: '1', value: '55%' },
         { label: '2', value: '55%' },
@@ -18,9 +18,9 @@ function getRatings(): Rating[] {
         { label: 'Pass', value: '55%' },
         { label: 'Exempt', value: '55%' },
     ];
-}
+};
 
-function AuthorityDetailScreen(): ReactElement {
+const AuthorityDetailScreen = (): ReactElement => {
     const route = useRoute<AuthorityDetailRoute>();
     const navigation = useNavigation<RootStackNavigation>();
 
@@ -33,7 +33,7 @@ function AuthorityDetailScreen(): ReactElement {
         navigation.setOptions({ title: authorityName });
     });
 
-    let renderItem: ListRenderItem<Rating> = ({ item: rating }) => {
+    const renderItem: ListRenderItem<Rating> = ({ item: rating }) => {
         const { label, value } = rating;
 
         return (
@@ -55,6 +55,6 @@ function AuthorityDetailScreen(): ReactElement {
             <FlatList data={ratings} renderItem={renderItem} />
         </View>
     );
-}
+};
 
-export { AuthorityDetailScreen };
+export default AuthorityDetailScreen;
