@@ -9,20 +9,20 @@ import { AuthorityList } from 'src/components';
 import { Authority } from 'src/models';
 import { RootStackNavigation } from 'src/navigation';
 
-function AuthorityListScreen(): ReactElement {
+const AuthorityListScreen = (): ReactElement => {
     const [authorities, setAuthorities] = useState<readonly Authority[]>();
     const [errorMessage, setErrorMessage] = useState<string>();
 
     const navigation = useNavigation<RootStackNavigation>();
 
     useEffect(() => {
-        async function getAuthoritiesAsync() {
+        const getAuthoritiesAsync = async () => {
             try {
                 setAuthorities(await getAuthorities());
             } catch (error) {
                 setErrorMessage((error as Error).message);
             }
-        }
+        };
 
         getAuthoritiesAsync();
     }, []);
@@ -40,6 +40,6 @@ function AuthorityListScreen(): ReactElement {
     }
 
     return <AuthorityList authorities={authorities} onSelectAuthority={onSelectAuthority} />;
-}
+};
 
 export { AuthorityListScreen };

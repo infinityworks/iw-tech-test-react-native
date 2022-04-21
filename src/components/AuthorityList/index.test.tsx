@@ -5,7 +5,7 @@ import { Authority } from 'src/models';
 import { AuthorityList } from '.';
 
 describe('<AuthorityList />', () => {
-    let authorities: Authority[] = [
+    const authorities: Authority[] = [
         {
             id: 198,
             name: 'Aberdeenshire',
