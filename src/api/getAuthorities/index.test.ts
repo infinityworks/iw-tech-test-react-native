@@ -33,9 +33,9 @@ describe('getAuthorities()', () => {
             }),
         );
 
-        let actualAuthorities = await getAuthorities();
+        const actualAuthorities = await getAuthorities();
 
-        let expectedAuthorities: readonly Authority[] = [
+        const expectedAuthorities: readonly Authority[] = [
             {
                 id: 198,
                 name: 'Aberdeenshire',

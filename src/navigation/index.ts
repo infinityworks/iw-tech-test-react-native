@@ -16,9 +16,4 @@ type RootStackNavigation = NativeStackNavigationProp<RootStackParamList>;
 
 type AuthorityDetailRoute = RouteProp<RootStackParamList, 'AuthorityDetail'>;
 
-export type {
-    AuthorityDetailParams,
-    AuthorityDetailRoute,
-    RootStackParamList,
-    RootStackNavigation,
-};
+export type { RootStackParamList, RootStackNavigation, AuthorityDetailRoute };
